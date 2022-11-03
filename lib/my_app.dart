@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:onyxsio/core/configs/keyboard_unfocus.dart';
 import 'core/configs/configs.dart';
 import 'core/connection/bloc/connected_bloc.dart';
 import 'core/responsive/size.dart';
@@ -24,13 +25,15 @@ class MyApp extends StatelessWidget {
       // ],
       child: BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
         return Sizer(builder: (context, orientation, deviceType) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Sudesh',
-            theme: AppTheme.themeData(state.isDarkThemeOn, context),
-            initialRoute: "/",
-            onGenerateRoute: (settings) =>
-                RouteGenerator.generateRoute(settings),
+          return KeyboardUnfocus(
+            child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Sudesh',
+              theme: AppTheme.themeData(state.isDarkThemeOn, context),
+              initialRoute: "/",
+              onGenerateRoute: (settings) =>
+                  RouteGenerator.generateRoute(settings),
+            ),
           );
         });
       }),
